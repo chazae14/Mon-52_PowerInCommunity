@@ -1,3 +1,9 @@
+""" ENG 1P13 - Power In Community - Project 3
+
+Program that converts sheet music/guitar chords into audio and display, making it easier for deafblind people to play the guitar.
+
+Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhika Gupta, Matthew Guo, Nehil Seikh, McMaster University, March 3rd 2025. """
+
 import math
 import time
 import random
