@@ -12,31 +12,54 @@ from tkinter.font import Font
 
 #functions
 def select_song():
-    pass
+    root.withdraw()  
+    secondpage.deiconify()
+
+def go_back():
+    secondpage.withdraw()
+    root.deiconify()
 
 def last_played():
     pass
 
 #set up command
 root = Tk()
-mainframe = Frame(root, bg="#ffffff")
-mainframe.pack(fill=BOTH, expand=True)
+secondpage = Toplevel(root)
+secondpage.withdraw()
+
+#set up font
 default_font=Font(family="Times New Roman", size=40)
 title_font=Font(family="Times New Roman", size=50)
-main_frame=LabelFrame(mainframe, text="Main page")
-main_frame.grid(row=0, column=0, padx=20, pady=20) 
 
-#defining
+#set up the frame
+mainframe = Frame(root, bg="#ffffff")
+mainframe.pack(fill=BOTH, expand=True)
+secondframe = Frame(secondpage, bg="#ffffff")
+secondframe.pack(fill=BOTH, expand=True)
+
+second_frame=LabelFrame(secondframe)
+second_frame.grid(row=0, column=0, padx=20, pady=20) 
+main_frame=LabelFrame(mainframe)
+main_frame.grid(row=1, column=1, padx=20, pady=20) 
+
+#main page defining
 welcome_label=Label(mainframe, text="Welcome to the app!", font=default_font, bg="white", fg="black")
-select_button=Button(mainframe, text="select song", command=select_song, bg="#ffff00", width=25, height=3, font=default_font)
-last_played_button=Button(mainframe, text="last played song", command=last_played, bg="#ffff00", width=25, height=3, font=default_font)
+select_button=Button(mainframe, text="select song", command=select_song, bg="yellow", width=25, height=3, font=default_font)
+last_played_button=Button(mainframe, text="last played song", command=last_played, bg="yellow", width=25, height=3, font=default_font)
 
-#gridding
-welcome_label.grid(row=1, column=1, padx=100, pady=30, sticky=W)
-select_button.grid(row=2, column=1, sticky=W)
-last_played_button.grid(row=3, column=1, sticky=W)
+#second page defining
+back_button=Button(secondframe, text="go back", command=go_back, bg="yellow", width=25, height=3, font=default_font)
+
+#main page gridding
+welcome_label.grid(row=2, column=1, padx=100, pady=30, sticky=W)
+select_button.grid(row=3, column=1, padx=100, pady=15, sticky=W)
+last_played_button.grid(row=4, column=1, padx=100, pady=15, sticky=W)
+
+#second page gridding
+back_button.grid(row=1, column=1,padx=100, pady=30, sticky=W)
 
 #set up command
-root.geometry("640x500")
-root.configure(bg="grey")
+root.geometry("800x600")
+secondpage.geometry("800x600")
 root.mainloop()
+secondpage.mainloop()
