@@ -7,3 +7,33 @@ Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhika Gupta, Matthew Guo, Nehil Seikh
 import math
 import time
 import random
+
+def select_song():
+    pass
+
+def last_played():
+    pass
+
+#set up command
+root = Tk()
+mainframe = Frame(root, bg="grey")
+mainframe.pack(fill=BOTH, expand=True)
+default_font=Font(family="Times New Roman", size=25)
+title_font=Font(family="Times New Roman", size=400)
+main_frame=LabelFrame(mainframe, text="Main page")
+main_frame.grid(row=0, column=0, padx=20, pady=20) 
+
+#defining
+welcome_label=Label(mainframe, text="Welcome to the app!")
+select_button=Button(mainframe, text="select song", command=select_song, bg="#ffff00", width=40, height=5, font=default_font)
+last_played_button=Button(mainframe, text="last played song", command=last_played, bg="#ffff00", width=40, height=5, font=default_font)
+
+#gridding
+welcome_label.grid(row=1, column=1, sticky=W)
+select_button.grid(row=2, column=1, sticky=W)
+last_played_button.grid(row=3, column=1, sticky=W)
+
+#set up command
+root.geometry("640x400")
+root.configure(bg="grey")
+root.mainloop()
