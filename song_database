@@ -1,18 +1,17 @@
 [
- {
-     "song name": "Knockin' on Heavens Door",
-     "singer": "Bob Dylan",
-     "bmp": 70,
-     "chords": "G, D, Am, G, D, C",
-     "beats": 2, 2, 2, 2, 2, 2,
+  {
+    "song_name": "Knockin' on Heaven's Door",
+    "singer": "Bob Dylan",
+    "bpm": 70,
+    "chords": ["G", "D", "Am", "G", "D", "C"],
+    "beats": [2, 2, 2, 2, 2, 2]
+  },
+  
+  {
+    "song_name": "Riptide",
+    "singer": "Vance Joy",
+    "bpm": 102,
+    "chords": ["Am", "G", "C", "Am", "G", "C"],
+    "beats": [2, 2, 2, 2, 2, 2]
   }
- 
- {
-     "song name": "Riptide",
-     "singer": "Vance Joy",
-     "bmp": 102,
-     "chords": "Am, G, C, Am, G, C",
-     "beats": 2, 2, 2, 2, 2, 2,
-  }
- 
 ]
