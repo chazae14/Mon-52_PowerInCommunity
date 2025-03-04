@@ -1,0 +1,49 @@
+## Displaying chords function
+
+import json
+import time
+import pyttsx3
+
+# functionalities
+dataFile = "songs_database.json"
+button_play = True
+button_pause = not button_play
+engine = pyttsx3.init()
+chord_pause = []
+
+def display_chords(song_number):
+    with open(dataFile, encoding="utf8") as f:
+        json_data = json.load(f)
+
+    if button_pause:
+        print("Paused.")
+        engine.say("Learning Paused.")
+        engine.runAndWait()
+        
+    if button_play:
+        engine.say("Playing.")
+        engine.runAndWait()
+        
+        # imports data from song song database
+        song = json_data[song_number]
+        songName = song["song_name"]
+        singer = song["singer"]
+        beatPerM = song["bpm"]
+        chords = song["chords"]
+        beats = song["beats"]
+        
+        # says song out loud
+        print(f"{songName}, by {singer}")
+        engine.say(f"{songName}, by {singer}")
+        engine.runAndWait()
+        
+        
+        # for loop to iterate through all chords and say them out loud
+        for i in range (len(chords)):
+            chord_pause.append(chords[i])
+            print(chords[i])
+            engine.say(chords[i])
+            engine.runAndWait()
+            time.sleep(beats[i]/beatPerM*60)
+            if len(chord_pause) == len(chords):
+                chord_pause.clear()
