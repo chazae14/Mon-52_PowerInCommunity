@@ -7,8 +7,9 @@ Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhika Gupta, Matthew Guo, Nehil Seikh
 import math
 import time
 import random
-from tkinter import *
-from tkinter.font import Font
+
+#define all the list
+music=["music_#1", "music_#2", "music_#3", "music_#4", "music_#5", "music_#6", "music_#7", "music_#8", "music_#9", "music_#10"]
 
 #functions
 def select_song():
@@ -19,12 +20,19 @@ def go_back():
     secondpage.withdraw()
     root.deiconify()
 
+def play_music():
+    secondpage.withdraw()
+    thirdpage.deiconify()
+
 def last_played():
     pass
+
 
 #set up command
 root = Tk()
 secondpage = Toplevel(root)
+thirdpage = Toplevel(root)
+thirdpage.withdraw()
 secondpage.withdraw()
 
 #set up font
@@ -36,11 +44,15 @@ mainframe = Frame(root, bg="#ffffff")
 mainframe.pack(fill=BOTH, expand=True)
 secondframe = Frame(secondpage, bg="#ffffff")
 secondframe.pack(fill=BOTH, expand=True)
+thirdframe = Frame(thirdpage, bg="#ffffff")
+thirdframe.pack(fill=BOTH, expand=True)
 
 second_frame=LabelFrame(secondframe)
 second_frame.grid(row=0, column=0, padx=20, pady=20) 
 main_frame=LabelFrame(mainframe)
 main_frame.grid(row=1, column=1, padx=20, pady=20) 
+third_frame=LabelFrame(thirdframe)
+third_frame.grid(row=0, column=0, padx=20, pady=20) 
 
 #main page defining
 welcome_label=Label(mainframe, text="Welcome to the app!", font=default_font, bg="white", fg="black")
@@ -49,6 +61,11 @@ last_played_button=Button(mainframe, text="last played song", command=last_playe
 
 #second page defining
 back_button=Button(secondframe, text="go back", command=go_back, bg="yellow", width=25, height=3, font=default_font)
+play_button=Button(secondframe, text="play", command=play_music, bg="yellow", width=25, height=3, font=default_font)
+
+music_list_var=StringVar()
+music_list_var.set(music)
+music_list=Listbox(secondframe, listvariable=music_list_var, selectmode=SINGLE, width=25, height=6, font=default_font)
 
 #main page gridding
 welcome_label.grid(row=2, column=1, padx=100, pady=30, sticky=W)
@@ -56,10 +73,13 @@ select_button.grid(row=3, column=1, padx=100, pady=15, sticky=W)
 last_played_button.grid(row=4, column=1, padx=100, pady=15, sticky=W)
 
 #second page gridding
-back_button.grid(row=1, column=1,padx=100, pady=30, sticky=W)
+back_button.grid(row=3, column=1,padx=100, pady=30, sticky=W)
+play_button.grid(row=2, column=1,padx=100, pady=30, sticky=W)
+music_list.grid(row=1, column=1,padx=100, pady=30, sticky=W)
 
 #set up command
 root.geometry("800x600")
-secondpage.geometry("800x600")
+secondpage.geometry("800x800")
+thirdpage.geometry("900x900")
 root.mainloop()
 secondpage.mainloop()
