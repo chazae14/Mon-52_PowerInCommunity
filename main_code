@@ -8,6 +8,9 @@ import math
 import time
 import random
 
+from tkinter import *
+from tkinter.font import Font
+
 #define all the list
 music=["music_#1", "music_#2", "music_#3", "music_#4", "music_#5", "music_#6", "music_#7", "music_#8", "music_#9", "music_#10"]
 
