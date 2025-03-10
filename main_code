@@ -19,7 +19,7 @@ def select_song():
     root.withdraw()  
     secondpage.deiconify()
 
-def go_back():
+def go_back_2():
     secondpage.withdraw()
     root.deiconify()
 
@@ -27,7 +27,14 @@ def play_music():
     secondpage.withdraw()
     thirdpage.deiconify()
 
+def go_back_3():
+    thirdpage.withdraw()
+    secondpage.deiconify()
+
 def last_played():
+    pass
+
+def play_stop():
     pass
 
 
@@ -40,49 +47,61 @@ secondpage.withdraw()
 
 #set up font
 default_font=Font(family="Times New Roman", size=40)
-title_font=Font(family="Times New Roman", size=50)
+title_font=Font(family="Times New Roman", size=70)
+chord_font=Font(family="Times New Roman", size=120)
 
 #set up the frame
-mainframe = Frame(root, bg="#ffffff")
-mainframe.pack(fill=BOTH, expand=True)
-secondframe = Frame(secondpage, bg="#ffffff")
-secondframe.pack(fill=BOTH, expand=True)
-thirdframe = Frame(thirdpage, bg="#ffffff")
-thirdframe.pack(fill=BOTH, expand=True)
+homepage = Frame(root, bg="#ffffff")
+homepage.pack(fill=BOTH, expand=True)
+selectionframe = Frame(secondpage, bg="#ffffff")
+selectionframe.pack(fill=BOTH, expand=True)
+playingframe = Frame(thirdpage, bg="#ffffff")
+playingframe.pack(fill=BOTH, expand=True)
 
-second_frame=LabelFrame(secondframe)
+second_frame=LabelFrame(selectionframe)
 second_frame.grid(row=0, column=0, padx=20, pady=20) 
-main_frame=LabelFrame(mainframe)
+main_frame=LabelFrame(homepage)
 main_frame.grid(row=1, column=1, padx=20, pady=20) 
-third_frame=LabelFrame(thirdframe)
+third_frame=LabelFrame(playingframe)
 third_frame.grid(row=0, column=0, padx=20, pady=20) 
 
-#main page defining
-welcome_label=Label(mainframe, text="Welcome to the app!", font=default_font, bg="white", fg="black")
-select_button=Button(mainframe, text="select song", command=select_song, bg="yellow", width=25, height=3, font=default_font)
-last_played_button=Button(mainframe, text="last played song", command=last_played, bg="yellow", width=25, height=3, font=default_font)
+#homepage defining
+welcome_label=Label(homepage, text="Welcome to the app!", font=default_font, fg="white")
+select_button=Button(homepage, text="select song", command=select_song, bg="yellow", width=25, height=3, font=default_font)
+last_played_button=Button(homepage, text="last played song", command=last_played, bg="yellow", width=25, height=3, font=default_font)
 
-#second page defining
-back_button=Button(secondframe, text="go back", command=go_back, bg="yellow", width=25, height=3, font=default_font)
-play_button=Button(secondframe, text="play", command=play_music, bg="yellow", width=25, height=3, font=default_font)
+#selection frame defining
+back_button_2=Button(selectionframe, text="go back", command=go_back_2, bg="yellow", width=25, height=3, font=default_font)
+play_button=Button(selectionframe, text="play", command=play_music, bg="yellow", width=25, height=3, font=default_font)
 
 music_list_var=StringVar()
 music_list_var.set(music)
-music_list=Listbox(secondframe, listvariable=music_list_var, selectmode=SINGLE, width=25, height=6, font=default_font)
+music_list=Listbox(selectionframe, listvariable=music_list_var, selectmode=SINGLE, width=25, height=6, font=default_font)
 
-#main page gridding
+#playing frame defining
+music_name=Label(playingframe, text="music name", font=title_font, fg="black", bg="yellow")
+play_stop_button=Button(playingframe, text="play/pause", command=play_music, bg="yellow", width=20, height=5, font=default_font)
+back_button_3=Button(playingframe, text="😭", command=go_back_3, bg="yellow", width=15, height=5, font=default_font)
+chord=Label(playingframe, text="Em", font=chord_font)
+
+#homepage gridding
 welcome_label.grid(row=2, column=1, padx=100, pady=30, sticky=W)
 select_button.grid(row=3, column=1, padx=100, pady=15, sticky=W)
 last_played_button.grid(row=4, column=1, padx=100, pady=15, sticky=W)
 
-#second page gridding
-back_button.grid(row=3, column=1,padx=100, pady=30, sticky=W)
+#selection frame gridding
+back_button_2.grid(row=3, column=1,padx=100, pady=30, sticky=W)
 play_button.grid(row=2, column=1,padx=100, pady=30, sticky=W)
 music_list.grid(row=1, column=1,padx=100, pady=30, sticky=W)
 
+
+#playing frame gridding
+music_name.grid(row=1, column=2, sticky=W)
+play_stop_button.grid(row=2, column=1, padx=50, pady=50, sticky=W)
+back_button_3.grid(row=3, column=3, padx=100, sticky=W)
+chord.grid(row=2, column=2, padx=100, sticky=W)
+
 #set up command
-root.geometry("800x600")
-secondpage.geometry("800x800")
-thirdpage.geometry("900x900")
 root.mainloop()
 secondpage.mainloop()
+thirdpage.mainloop()
