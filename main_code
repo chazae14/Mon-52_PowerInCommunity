@@ -7,6 +7,7 @@ Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhika Gupta, Matthew Guo, Nehil Seikh
 import math
 import time
 import random
+import json
 
 from tkinter import *
 from tkinter.font import Font
@@ -14,7 +15,7 @@ from tkinter.font import Font
 #define the music list
 music = []
 
-dataFile = "songs_database.json"
+dataFile = "song_database.json"
 with open(dataFile, encoding="utf8") as f:
     json_data = json.load(f)
 for i in range (len(json_data)):
@@ -38,6 +39,9 @@ def go_back_2():
 def play_music():
     secondpage.withdraw()
     thirdpage.deiconify()
+    selected_song=music_list.curselection()
+    selected_text=[music_list.get(i) for i in selected_song]
+    music_name.config(text=f"{selected_text}")
 
 def go_back_3():
     thirdpage.withdraw()
@@ -90,13 +94,12 @@ select_button=Button(homepage, text="select song", command=select_song, bg="yell
 last_played_button=Button(homepage, text="last played song", command=last_played, bg="yellow", width=25, height=3, font=default_font)
 
 #selection frame defining
-back_button_2=Button(selectionframe, text="go back", command=go_back_2, bg="yellow", width=25, height=3, font=default_font)
-play_button=Button(selectionframe, text="▶️", command=play_music, bg="yellow", width=14, height=2, font=emoji_font)
-
-
 music_list_var=StringVar()
 music_list_var.set(music)
 music_list=Listbox(selectionframe, listvariable=music_list_var, selectmode=SINGLE, width=25, height=6, font=default_font)
+
+back_button_2=Button(selectionframe, text="go back", command=go_back_2, bg="yellow", width=25, height=3, font=default_font)
+play_button=Button(selectionframe, text="▶️", command=play_music, bg="yellow", width=14, height=2, font=emoji_font)
 
 #playing frame defining
 music_name=Label(playingframe, text="music name", font=title_font, fg="black", bg="yellow")
@@ -118,7 +121,7 @@ play_button.grid(row=3, column=1,padx=100, pady=15, sticky=W)
 music_list.grid(row=1, column=1,padx=100, pady=30, sticky=W)
 
 #playing frame gridding
-music_name.grid(row=1, column=2, sticky=W)
+music_name.grid(row=1, column=1, columnspan=3, sticky=W)
 play_music_button.grid(row=2, column=1, padx=50, pady=50, sticky=W)
 stop_music_button.grid(row=3, column=1, padx=50, pady=50, sticky=W)
 back_button_3.grid(row=3, column=2, padx=30, sticky=W)
