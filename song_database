@@ -15,26 +15,26 @@
     "beats": [2, 2, 2, 2, 2, 2]
   },
 {
-“song_name”: “Tennessee Whiskey”,
-“singer”: “Chris Stapleton”,
-“bpm”: 49,
-“chords”: [ “A”, “Bm”, “D”, “A”, “A”, “Bm”, “D”, “Bm”, “A”, “A”, “Bm”, “D”, “Bm”, “A”, “A”, “Bm”, “D”, “Bm”, “A”, “A”, “Bm”, “D”, “Bm”, “A”, “A”, “Bm”, “D”, “Bm”, “A”, “A”, “Bm”, “D”, “Bm”, “A”, “D”,  “A”, “Bm”, “D”, “Bm”, “A”, “A”, “Bm”, “D”, “Bm”, “A”, 
-“A”, “Bm”, “D”, “Bm”, “A”, 
-“A”, “Bm”, “D”, “Bm”, “A”, “A”, “Bm”, “D”, “Bm”, “A”, “A”, “Bm”, “D”, “Bm”, “A”, “A”, “Bm”, “D”, “Bm”, “A”],
-“beats”: [4, 4, 4, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 2, 2, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4,
+"song_name": "Tennessee Whiskey",
+"singer": "Chris Stapleton",
+"bpm": 49,
+"chords": [ "A", "Bm", "D", "A", "A", "Bm", "D", "Bm", "A", "A", "Bm", "D", "Bm", "A", "A", "Bm", "D", "Bm", "A", "A", "Bm", "D", "Bm", "A", "A", "Bm", "D", "Bm", "A", "A", "Bm", "D", "Bm", "A", "D",  "A", "Bm", "D", "Bm", "A", "A", "Bm", "D", "Bm", "A", 
+"A", "Bm", "D", "Bm", "A", 
+"A", "Bm", "D", "Bm", "A", "A", "Bm", "D", "Bm", "A", "A", "Bm", "D", "Bm", "A", "A", "Bm", "D", "Bm", "A"],
+"beats": [4, 4, 4, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 2, 2, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4,
 4, 4, 2, 2, 4
 4, 4, 2, 2, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4, 4, 4, 2, 2, 4]
 },
-{“song_name”: “The Chain”,
-“singer”: “Fleetwood Mac”,
-“bpm”: 76,
-“chords”: [“Em”,
-“Em”, “A”, “A7”, “Bm/D”, “Am/C”, “Em”, “A”, “A7”, “Bm/D”, “Am/C”,“Em”, 
-“Am7”, “Em”, “C”, “D”, “Am7”, “Em”, “C”, “D”, “Em”,
-“Em”, “A”, “A7”, “Bm/D”, “Am/C”, “Em”, “A”, “A7”, “Bm/D”, “Am/C”, “Em”, “A”, “A7”, “Bm/D”, “Am/C”, “Em”,  
-“Am7”, “Em”, “C”, “D”, “Am7”, “Em”, “C”, “D”, “Em”, “Am7”, “Em”, “C”, “D”, “Am7”, “Em”, “C”, “D”, “Em”, “Am7”, “Em”, “C”, “D”, “Am7”, “Em”, “C”, “D”, “Em”, 
-“Am”, “C”, “G”, “Em”, “Am”, “C”, “G”, “Em”, “Am”, “C”, “G”, “Em”, “Am”, “C”, “G”, “Em”],
-“beats”: [8, 
+{"song_name": "The Chain",
+"singer": "Fleetwood Mac",
+"bpm": 76,
+"chords": ["Em",
+"Em", "A", "A7", "Bm/D", "Am/C", "Em", "A", "A7", "Bm/D", "Am/C","Em", 
+"Am7", "Em", "C", "D", "Am7", "Em", "C", "D", "Em",
+"Em", "A", "A7", "Bm/D", "Am/C", "Em", "A", "A7", "Bm/D", "Am/C", "Em", "A", "A7", "Bm/D", "Am/C", "Em",  
+"Am7", "Em", "C", "D", "Am7", "Em", "C", "D", "Em", "Am7", "Em", "C", "D", "Am7", "Em", "C", "D", "Em", "Am7", "Em", "C", "D", "Am7", "Em", "C", "D", "Em", 
+"Am", "C", "G", "Em", "Am", "C", "G", "Em", "Am", "C", "G", "Em", "Am", "C", "G", "Em"],
+"beats": [8, 
 4, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8
 8, 2, 2, 4, 8, 2, 2, 4, 8, 
 4, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 4,
@@ -42,3 +42,4 @@
 1, 1, 2, 4, 1, 1, 2, 4, 1, 1, 2, 4, 1, 1, 2, 4]
 }
 ]
+
