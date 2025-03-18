@@ -2,15 +2,17 @@
 
 Program that converts sheet music/guitar chords into audio and display, making it easier for deafblind people to play the guitar.
 
-Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhika Gupta, Matthew Guo, Nehil Seikh, McMaster University, March 3rd 2025. """
+Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhikka Gupta, Matthew Guo, Nehil Seikh, McMaster University, March 3rd 2025. """
 
 import math
 import time
 import random
+import pygame
 import json
 
 from tkinter import *
 from tkinter.font import Font
+pygame.mixer.init()
 
 #define the music list
 music = []
@@ -24,8 +26,11 @@ for i in range (len(json_data)):
     songArtist = song["singer"]
     song_display = f"{songName} - {songArtist}"
     music.append(song_display)
-       
-current_song="music1"
+
+# global vars
+playingCurr = False
+currentSong = None
+speed = 1.0
 
 #functions
 def select_song():
@@ -37,28 +42,63 @@ def go_back_2():
     root.deiconify()
 
 def play_music():
+    global currentSong, playingCurr
+    
     secondpage.withdraw()
     thirdpage.deiconify()
+    
     selected_song=music_list.curselection()
     selected_text=[music_list.get(i) for i in selected_song]
     music_name.config(text=f"{selected_text}")
+    currentSong = selected_text[0]
+
+    file = open("lastPlayedSong.txt", "w")
+    file.write(currentSong.strip() + "\n")
+    file.close()
 
 def go_back_3():
     thirdpage.withdraw()
     secondpage.deiconify()
 
 def last_played():
-    pass
+    try:
+        file = open("lastPlayedSong.txt", "r")
+        lastSong = file.read().strip()
+        file.close()
+
+        if lastSong: # exists
+            music_name.config(text=lastSong)
+            thirdpage.deiconify()
+            secondpage.withdraw()
+        else:
+            print("No song found.")
+    except FileNotFoundError:
+        print("No data available.")
 
 def play_stop():
-    pass
+    global playingCurr
+    if playingCurr:
+        pygame.mixer.music.pause()
+        playingCurr = False
+    else:
+        pygame.mixer.music.unpause()
+        playingCurr = True
 
 def speed_up():
-    pass
+    global speed
+    speed += 0.2 # can change.
+    pygame.mixer.quit()
+    pygame.mixer.init(frequency = int(44100 * speed))
+    if playingCurr:
+        pygame.mixer.music.play()
 
 def speed_down():
-    pass
-
+    global speed
+    speed = max(0.5, speed - 0.2) # allows for the min to not go below 0.5
+    pygame.mixer.quit()
+    pygame.mixer.init(frequency = int(44100 * speed))
+    if playingCurr:
+        pygame.mixer.music.play()
 
 #set up command
 root = Tk()
