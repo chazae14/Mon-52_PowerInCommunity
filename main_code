@@ -2,22 +2,29 @@
 
 Program that converts sheet music/guitar chords into audio and display, making it easier for deafblind people to play the guitar.
 
-Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhikka Gupta, Matthew Guo, Nehil Seikh, McMaster University, March 3rd 2025. """
+Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhika Gupta, Matthew Guo, Nehil Seikh, McMaster University, March 3rd 2025. """
 
-import math
 import time
 import random
-import pygame
 import json
-
 from tkinter import *
 from tkinter.font import Font
+import pyttsx3
+import pygame
+
 pygame.mixer.init()
+
+# functionalities
+dataFile = "songs_database.json"
+button_play = True
+button_pause = not button_play
+engine = pyttsx3.init()
+chord_pause = []
+
 
 #define the music list
 music = []
 
-dataFile = "song_database.json"
 with open(dataFile, encoding="utf8") as f:
     json_data = json.load(f)
 for i in range (len(json_data)):
@@ -42,7 +49,7 @@ def go_back_2():
     root.deiconify()
 
 def play_music():
-    global currentSong, playingCurr
+    global currentSong, playingCurr, speed
     
     secondpage.withdraw()
     thirdpage.deiconify()
@@ -55,6 +62,9 @@ def play_music():
     file = open("lastPlayedSong.txt", "w")
     file.write(currentSong.strip() + "\n")
     file.close()
+    
+    display_chords(music.index(selected_text[0]), speed)
+
 
 def go_back_3():
     thirdpage.withdraw()
@@ -100,6 +110,46 @@ def speed_down():
     if playingCurr:
         pygame.mixer.music.play()
 
+def display_chords(song_number, speed):
+    with open(dataFile, encoding="utf8") as f:
+        json_data = json.load(f)
+
+    if button_pause:
+        engine.say("Learning Paused.")
+        engine.runAndWait()
+
+        
+    if button_play:
+        engine.say("Playing.")
+        engine.runAndWait()
+
+        
+        # imports data from song song database
+        song = json_data[song_number]
+        songName = song["song_name"]
+        singer = song["singer"]
+        beatPerM = song["bpm"]
+        chords = song["chords"]
+        beats = song["beats"]
+        
+        # says song out loud
+        engine.say(f"{songName}, by {singer}")
+        engine.runAndWait()
+      
+        
+        # for loop to iterate through all chords and say them out loud
+        for i in range(len(chords)):
+            chord_pause.append(chords[i])
+            chord=Label(playingframe, text=f"{chords[i]}", font=chord_font)
+            chord.grid(row=2, column=2, padx=100, sticky=W)
+            engine.say(chords[i])
+            engine.runAndWait()  # Ensure each chord is spoken before sleeping
+
+            time.sleep(beats[i] / beatPerM * 60 * speed)
+
+            if len(chord_pause) == len(chords):
+                chord_pause.clear()
+
 #set up command
 root = Tk()
 secondpage = Toplevel(root)
@@ -143,10 +193,12 @@ play_button=Button(selectionframe, text="▶️", command=play_music, bg="yellow
 
 #playing frame defining
 music_name=Label(playingframe, text="music name", font=title_font, fg="black", bg="yellow")
-play_music_button=Button(playingframe, text="▶️", command=play_music, bg="yellow", width=9, height=2, font=emoji_font)
-stop_music_button=Button(playingframe, text="⏸️", command=play_music, bg="yellow", width=9, height=2, font=emoji_font)
-back_button_3=Button(playingframe, text="back", command=go_back_3, bg="yellow", width=15, height=4, font=default_font)
-chord=Label(playingframe, text="Em", font=chord_font)
+play_music_button=Button(playingframe, text="▶️", command=play_music, bg="yellow", width=12, height=3, font=emoji_font)
+stop_music_button=Button(playingframe, text="⏸️", command=play_music, bg="yellow", width=12, height=3, font=emoji_font)
+back_button_3=Button(playingframe, text="back", command=go_back_3, bg="yellow", width=15, height=5, font=default_font)
+
+chord=Label(playingframe, text=" ", font=chord_font)
+
 speed_up_button=Button(playingframe, text= "⏫", command=speed_up, bg="yellow", width=9, height=2, font=emoji_font)
 speed_down_button=Button(playingframe, text= "⏬", command=speed_down, bg="yellow", width=9, height=2, font=emoji_font)
 
@@ -162,9 +214,9 @@ music_list.grid(row=1, column=1,padx=100, pady=30, sticky=W)
 
 #playing frame gridding
 music_name.grid(row=1, column=1, columnspan=3, sticky=W)
-play_music_button.grid(row=2, column=1, padx=50, pady=50, sticky=W)
-stop_music_button.grid(row=3, column=1, padx=50, pady=50, sticky=W)
-back_button_3.grid(row=3, column=2, padx=30, sticky=W)
+play_music_button=Button(playingframe, text="▶️", command=play_music, bg="yellow", width=9, height=2, font=emoji_font)
+stop_music_button=Button(playingframe, text="⏸️", command=play_music, bg="yellow", width=9, height=2, font=emoji_font)
+back_button_3=Button(playingframe, text="back", command=go_back_3, bg="yellow", width=15, height=4, font=default_font)
 chord.grid(row=2, column=2, padx=100, sticky=W)
 speed_up_button.grid(row=2, column=3, padx=30, pady=30, sticky=W)
 speed_down_button.grid(row=3, column=3, padx=30, pady=30, sticky=W)
