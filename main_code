@@ -111,7 +111,7 @@ secondpage.withdraw()
 default_font=Font(family="Times New Roman", size=40)
 title_font=Font(family="Times New Roman", size=70)
 chord_font=Font(family="Times New Roman", size=120)
-emoji_font=Font(family="Times New Roman", size=70)
+emoji_font=Font(family="Times New Roman", size=90)
 
 #set up the frame
 homepage = Frame(root, bg="#ffffff")
@@ -139,16 +139,16 @@ music_list_var.set(music)
 music_list=Listbox(selectionframe, listvariable=music_list_var, selectmode=SINGLE, width=25, height=6, font=default_font)
 
 back_button_2=Button(selectionframe, text="go back", command=go_back_2, bg="yellow", width=25, height=3, font=default_font)
-play_button=Button(selectionframe, text="▶️", command=play_music, bg="yellow", width=14, height=2, font=emoji_font)
+play_button=Button(selectionframe, text="▶️", command=play_music, bg="yellow", width=11, height=2, font=emoji_font)
 
 #playing frame defining
 music_name=Label(playingframe, text="music name", font=title_font, fg="black", bg="yellow")
-play_music_button=Button(playingframe, text="▶️", command=play_music, bg="yellow", width=12, height=3, font=emoji_font)
-stop_music_button=Button(playingframe, text="⏸️", command=play_music, bg="yellow", width=12, height=3, font=emoji_font)
-back_button_3=Button(playingframe, text="back", command=go_back_3, bg="yellow", width=15, height=5, font=default_font)
+play_music_button=Button(playingframe, text="▶️", command=play_music, bg="yellow", width=9, height=2, font=emoji_font)
+stop_music_button=Button(playingframe, text="⏸️", command=play_music, bg="yellow", width=9, height=2, font=emoji_font)
+back_button_3=Button(playingframe, text="back", command=go_back_3, bg="yellow", width=15, height=4, font=default_font)
 chord=Label(playingframe, text="Em", font=chord_font)
-speed_up_button=Button(playingframe, text= "⏫", command=speed_up, bg="yellow", width=12, height=3, font=emoji_font)
-speed_down_button=Button(playingframe, text= "⏬", command=speed_down, bg="yellow", width=12, height=3, font=emoji_font)
+speed_up_button=Button(playingframe, text= "⏫", command=speed_up, bg="yellow", width=9, height=2, font=emoji_font)
+speed_down_button=Button(playingframe, text= "⏬", command=speed_down, bg="yellow", width=9, height=2, font=emoji_font)
 
 #homepage gridding
 welcome_label.grid(row=2, column=1, padx=100, pady=30, sticky=W)
