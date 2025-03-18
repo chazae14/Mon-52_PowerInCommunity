@@ -62,9 +62,6 @@ def play_music():
     file = open("lastPlayedSong.txt", "w")
     file.write(currentSong.strip() + "\n")
     file.close()
-    
-    display_chords(music.index(selected_text[0]), speed)
-
 
 def go_back_3():
     thirdpage.withdraw()
@@ -86,20 +83,24 @@ def last_played():
         print("No data available.")
 
 def play_start():
-    global playingCurr
+    global playingCurr, currentSong, speed
     if not playingCurr:
         pygame.mixer.music.unpause()
         playingCurr = True
-    
+        print(currentSong, music.index(currentSong))
+        display_chords(music.index(currentSong), speed)
+
 def play_stop():
     global playingCurr
     if playingCurr:
         pygame.mixer.music.pause()
         playingCurr = False
+    
 
 def speed_up():
     global speed
     speed += 0.2 # can change.
+    
 
 def speed_down():
     global speed
@@ -130,13 +131,16 @@ def display_chords(song_number, speed):
         # says song out loud
         engine.say(f"{songName}, by {singer}")
         engine.runAndWait()
-      
+    
+        chord=Label(playingframe, text="", font=chord_font)
+        chord.grid(row=2, column=2, padx=100, sticky=W)     
         
         # for loop to iterate through all chords and say them out loud
         for i in range(len(chords)):
             chord_pause.append(chords[i])
-            chord=Label(playingframe, text=f"{chords[i]}", font=chord_font)
-            chord.grid(row=2, column=2, padx=100, sticky=W)
+            chord.config(text=f"{chords[i]}") 
+            thirdpage.update()
+            
             engine.say(chords[i])
             engine.runAndWait()  # Ensure each chord is spoken before sleeping
 
@@ -188,11 +192,10 @@ play_button=Button(selectionframe, text="▶️", command=play_music, bg="yellow
 
 #playing frame defining
 music_name=Label(playingframe, text="music name", font=title_font, fg="black", bg="yellow")
-play_music_button=Button(playingframe, text="▶️", command=play_music, bg="yellow", width=12, height=3, font=emoji_font)
-stop_music_button=Button(playingframe, text="⏸️", command=play_music, bg="yellow", width=12, height=3, font=emoji_font)
+play_music_button=Button(playingframe, text="▶️", command=play_start, bg="yellow", width=12, height=3, font=emoji_font)
+stop_music_button=Button(playingframe, text="⏸️", command=play_stop, bg="yellow", width=12, height=3, font=emoji_font)
 back_button_3=Button(playingframe, text="back", command=go_back_3, bg="yellow", width=15, height=5, font=default_font)
 
-chord=Label(playingframe, text=" ", font=chord_font)
 
 speed_up_button=Button(playingframe, text= "⏫", command=speed_up, bg="yellow", width=9, height=2, font=emoji_font)
 speed_down_button=Button(playingframe, text= "⏬", command=speed_down, bg="yellow", width=9, height=2, font=emoji_font)
@@ -209,10 +212,9 @@ music_list.grid(row=1, column=1,padx=100, pady=30, sticky=W)
 
 #playing frame gridding
 music_name.grid(row=1, column=1, columnspan=3, sticky=W)
-play_music_button=Button(playingframe, text="▶️", command=play_music, bg="yellow", width=9, height=2, font=emoji_font)
-stop_music_button=Button(playingframe, text="⏸️", command=play_music, bg="yellow", width=9, height=2, font=emoji_font)
-back_button_3=Button(playingframe, text="back", command=go_back_3, bg="yellow", width=15, height=4, font=default_font)
-chord.grid(row=2, column=2, padx=100, sticky=W)
+play_music_button.grid(row=2, column=1, padx=50, pady=50, sticky=W)
+stop_music_button.grid(row=3, column=1, padx=50, pady=50, sticky=W)
+back_button_3.grid(row=3, column=2, padx=30, sticky=W)
 speed_up_button.grid(row=2, column=3, padx=30, pady=30, sticky=W)
 speed_down_button.grid(row=3, column=3, padx=30, pady=30, sticky=W)
 
