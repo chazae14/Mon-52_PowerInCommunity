@@ -85,30 +85,25 @@ def last_played():
     except FileNotFoundError:
         print("No data available.")
 
+def play_start():
+    global playingCurr
+    if not playingCurr:
+        pygame.mixer.music.unpause()
+        playingCurr = True
+    
 def play_stop():
     global playingCurr
     if playingCurr:
         pygame.mixer.music.pause()
         playingCurr = False
-    else:
-        pygame.mixer.music.unpause()
-        playingCurr = True
 
 def speed_up():
     global speed
     speed += 0.2 # can change.
-    pygame.mixer.quit()
-    pygame.mixer.init(frequency = int(44100 * speed))
-    if playingCurr:
-        pygame.mixer.music.play()
 
 def speed_down():
     global speed
     speed = max(0.5, speed - 0.2) # allows for the min to not go below 0.5
-    pygame.mixer.quit()
-    pygame.mixer.init(frequency = int(44100 * speed))
-    if playingCurr:
-        pygame.mixer.music.play()
 
 def display_chords(song_number, speed):
     with open(dataFile, encoding="utf8") as f:
