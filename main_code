@@ -39,6 +39,7 @@ playingCurr = False
 currentSong = None
 speed = 1.0
 paused = False
+current_chord_index = 0 # Added to track current chord
 
 #functions
 def select_song():
@@ -50,11 +51,11 @@ def go_back_2():
     root.deiconify()
 
 def play_music():
-    global currentSong, playingCurr, speed
+    global currentSong, playingCurr, speed, current_chord_index 
 
     secondpage.withdraw()
     thirdpage.deiconify()
-    
+
     selected_song = music_list.curselection()
     if not selected_song:
         print("No song selected!")
@@ -62,6 +63,7 @@ def play_music():
     selected_text = [music_list.get(i) for i in selected_song]
     music_name.config(text=f"{selected_text}")
     currentSong = selected_text[0]
+    current_chord_index = 0 # Reset index for a new song
 
     file = open("lastPlayedSong.txt", "w")
     file.write(currentSong.strip() + "\n")
@@ -72,8 +74,8 @@ def go_back_3():
     secondpage.deiconify()
 
 def last_played():
-    global currentSong
-    
+    global currentSong, current_chord_index #added current_chord_index
+
     try:
         file = open("lastPlayedSong.txt", "r")
         lastSong = file.read().strip()
@@ -82,6 +84,7 @@ def last_played():
         if lastSong: # exists
             music_name.config(text=lastSong)
             currentSong = lastSong
+            current_chord_index = 0 # Reset index when loading a last played song
             thirdpage.deiconify()
             secondpage.withdraw()
         else:
@@ -101,66 +104,59 @@ def play_stop():
 
 def speed_down():
     global speed
-    speed += 0.2
-    print(f"Speed increased to {speed}")
-    if currentSong:  # Re-trigger playback with updated speed
-        display_chords(music.index(currentSong), speed)
+    speed = max(0.5, speed - 0.2)  # Prevent negative speed
+    print(f"Speed decreased to {speed}")
 
 def speed_up():
     global speed
-    speed = max(0.5, speed - 0.2)  # Prevent negative speed
-    print(f"Speed decreased to {speed}")
-    if currentSong:  # Re-trigger playback with updated speed
-        display_chords(music.index(currentSong), speed)
-    
-def display_chords(song_number, speed):
+    speed += 0.2
+    print(f"Speed increased to {speed}")
+
+def display_chords(song_number, _speed):
+    global current_chord_index, speed
+
     with open(dataFile, encoding="utf8") as f:
         json_data = json.load(f)
 
-    if button_pause:
-        engine.say("Learning Paused.")
+    # imports data from song song database
+    song = json_data[song_number]
+    songName = song["song_name"]
+    singer = song["singer"]
+    beatPerM = song["bpm"]
+    chords = song["chords"]
+    beats = song["beats"]
+
+    chord = Label(playingframe, text="", font=chord_font)
+    chord.grid(row=2, column=2, padx=100, sticky=W)     
+
+    # If starting fresh, announce the song
+    if current_chord_index == 0:
+        engine.say(f"Playing {songName}, by {singer}")
         engine.runAndWait()
 
-
-    if button_play:
-        engine.say("Playing.")
-        engine.runAndWait()
-
-
-        # imports data from song song database
-        song = json_data[song_number]
-        songName = song["song_name"]
-        singer = song["singer"]
-        beatPerM = song["bpm"]
-        chords = song["chords"]
-        beats = song["beats"]
-
-        # says song out loud
-        engine.say(f"{songName}, by {singer}")
-        engine.runAndWait()
-
-        chord=Label(playingframe, text="", font=chord_font)
-        chord.grid(row=2, column=2, padx=100, sticky=W)     
-
-        # for loop to iterate through all chords and say them out loud
-        for i in range(len(chords)):
-            while paused:  # Wait while paused
-                thirdpage.update()
-                time.sleep(0.1)
-                if not paused:
-                    break
-
-            chord_pause.append(chords[i])
-            chord.config(text=f"{chords[i]}") 
+    # Continue from where we left off
+    while current_chord_index < len(chords):
+        if paused:  # Just wait while paused
             thirdpage.update()
+            time.sleep(0.1)
+            continue
 
-            engine.say(chords[i])
-            engine.runAndWait()  # Ensure each chord is spoken before sleeping
+        chord_pause.append(chords[current_chord_index])
+        chord.config(text=f"{chords[current_chord_index]}") 
+        thirdpage.update()
 
-            time.sleep(beats[i] / beatPerM * 60 * speed)
+        engine.say(chords[current_chord_index])
+        engine.runAndWait()
 
-            if len(chord_pause) == len(chords):
-                chord_pause.clear()
+        time.sleep((beats[current_chord_index] / beatPerM * 60) / speed)
+
+        if not paused:  # Only increment if not paused
+            current_chord_index += 1
+
+    # Reset index when song finishes
+    if current_chord_index >= len(chords):
+        current_chord_index = 0
+        chord_pause.clear()
 
 #set up command
 root = Tk()
