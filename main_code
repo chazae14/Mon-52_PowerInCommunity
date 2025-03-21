@@ -2,7 +2,7 @@
 
 Program that converts sheet music/guitar chords into audio and display, making it easier for deafblind people to play the guitar.
 
-Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhika Gupta, Matthew Guo, Nehil Seikh, McMaster University, March 3rd 2025. """
+Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhikka Gupta, Matthew Guo, Nehil Seikh, McMaster University, March 3rd 2025. """
 
 import time
 import random
@@ -38,6 +38,7 @@ for i in range (len(json_data)):
 playingCurr = False
 currentSong = None
 speed = 1.0
+paused = False
 
 #functions
 def select_song():
@@ -50,12 +51,15 @@ def go_back_2():
 
 def play_music():
     global currentSong, playingCurr, speed
-    
+
     secondpage.withdraw()
     thirdpage.deiconify()
     
-    selected_song=music_list.curselection()
-    selected_text=[music_list.get(i) for i in selected_song]
+    selected_song = music_list.curselection()
+    if not selected_song:
+        print("No song selected!")
+        return
+    selected_text = [music_list.get(i) for i in selected_song]
     music_name.config(text=f"{selected_text}")
     currentSong = selected_text[0]
 
@@ -68,6 +72,8 @@ def go_back_3():
     secondpage.deiconify()
 
 def last_played():
+    global currentSong
+    
     try:
         file = open("lastPlayedSong.txt", "r")
         lastSong = file.read().strip()
@@ -75,6 +81,7 @@ def last_played():
 
         if lastSong: # exists
             music_name.config(text=lastSong)
+            currentSong = lastSong
             thirdpage.deiconify()
             secondpage.withdraw()
         else:
@@ -83,29 +90,29 @@ def last_played():
         print("No data available.")
 
 def play_start():
-    global playingCurr, currentSong, speed
-    if not playingCurr:
-        pygame.mixer.music.unpause()
-        playingCurr = True
-        print(currentSong, music.index(currentSong))
+    global paused
+    paused = False  # Ensure playback starts
+    if currentSong:
         display_chords(music.index(currentSong), speed)
 
 def play_stop():
-    global playingCurr
-    if playingCurr:
-        pygame.mixer.music.pause()
-        playingCurr = False
-    
-
-def speed_up():
-    global speed
-    speed += 0.2 # can change.
-    
+    global paused
+    paused = True  # Pause playback
 
 def speed_down():
     global speed
-    speed = max(0.5, speed - 0.2) # allows for the min to not go below 0.5
+    speed += 0.2
+    print(f"Speed increased to {speed}")
+    if currentSong:  # Re-trigger playback with updated speed
+        display_chords(music.index(currentSong), speed)
 
+def speed_up():
+    global speed
+    speed = max(0.5, speed - 0.2)  # Prevent negative speed
+    print(f"Speed decreased to {speed}")
+    if currentSong:  # Re-trigger playback with updated speed
+        display_chords(music.index(currentSong), speed)
+    
 def display_chords(song_number, speed):
     with open(dataFile, encoding="utf8") as f:
         json_data = json.load(f)
@@ -114,12 +121,12 @@ def display_chords(song_number, speed):
         engine.say("Learning Paused.")
         engine.runAndWait()
 
-        
+
     if button_play:
         engine.say("Playing.")
         engine.runAndWait()
 
-        
+
         # imports data from song song database
         song = json_data[song_number]
         songName = song["song_name"]
@@ -127,20 +134,26 @@ def display_chords(song_number, speed):
         beatPerM = song["bpm"]
         chords = song["chords"]
         beats = song["beats"]
-        
+
         # says song out loud
         engine.say(f"{songName}, by {singer}")
         engine.runAndWait()
-    
+
         chord=Label(playingframe, text="", font=chord_font)
         chord.grid(row=2, column=2, padx=100, sticky=W)     
-        
+
         # for loop to iterate through all chords and say them out loud
         for i in range(len(chords)):
+            while paused:  # Wait while paused
+                thirdpage.update()
+                time.sleep(0.1)
+                if not paused:
+                    break
+
             chord_pause.append(chords[i])
             chord.config(text=f"{chords[i]}") 
             thirdpage.update()
-            
+
             engine.say(chords[i])
             engine.runAndWait()  # Ensure each chord is spoken before sleeping
 
