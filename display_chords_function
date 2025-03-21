@@ -11,19 +11,20 @@ button_pause = not button_play
 engine = pyttsx3.init()
 chord_pause = []
 
-def display_chords(song_number):
+def display_chords(song_number, speed):
     with open(dataFile, encoding="utf8") as f:
         json_data = json.load(f)
 
     if button_pause:
-        print("Paused.")
         engine.say("Learning Paused.")
         engine.runAndWait()
-        
+
+
     if button_play:
         engine.say("Playing.")
         engine.runAndWait()
-        
+
+
         # imports data from song song database
         song = json_data[song_number]
         songName = song["song_name"]
@@ -31,19 +32,30 @@ def display_chords(song_number):
         beatPerM = song["bpm"]
         chords = song["chords"]
         beats = song["beats"]
-        
+
         # says song out loud
-        print(f"{songName}, by {singer}")
         engine.say(f"{songName}, by {singer}")
         engine.runAndWait()
-        
-        
+
+        chord=Label(playingframe, text="", font=chord_font)
+        chord.grid(row=2, column=2, padx=100, sticky=W)     
+
         # for loop to iterate through all chords and say them out loud
-        for i in range (len(chords)):
+        for i in range(len(chords)):
+            while paused:  # Wait while paused
+                thirdpage.update()
+                time.sleep(0.1)
+                if not paused:
+                    break
+
             chord_pause.append(chords[i])
-            print(chords[i])
+            chord.config(text=f"{chords[i]}") 
+            thirdpage.update()
+
             engine.say(chords[i])
-            engine.runAndWait()
-            time.sleep(beats[i]/beatPerM*60)
+            engine.runAndWait()  # Ensure each chord is spoken before sleeping
+
+            time.sleep(beats[i] / beatPerM * 60 * speed)
+
             if len(chord_pause) == len(chords):
                 chord_pause.clear()
