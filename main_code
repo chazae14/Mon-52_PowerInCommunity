@@ -1,26 +1,25 @@
 """ ENG 1P13 - Power In Community - Project 3
 
-Program that converts sheet music/guitar chords into audio and display, making it easier for deafblind people to play the guitar.
+Program that converts sheet music/guitar chords into audio and display, making it easier for deafblind people to play the guitar. 
+Takes user input through buttons and selection lists, displays chords and allows for pausing, playing, speeding up and speeding down. 
+Outputs audio and text chords.
 
-Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhikka Gupta, Matthew Guo, Nehil Seikh, McMaster University, March 3rd 2025. """
+Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhikka Gupta, Matthew Guo, Nehil Seikh, McMaster University, March 31st 2025. """
 
 import time
-import random
 import json
 from tkinter import *
 from tkinter.font import Font
 import pyttsx3
 import pygame
 
-pygame.mixer.init()
-
 # functionalities
 dataFile = "songs_database.json"
 button_play = True
 button_pause = not button_play
 engine = pyttsx3.init()
+pygame.mixer.init()
 chord_pause = []
-
 
 #define the music list
 music = []
@@ -39,18 +38,27 @@ playingCurr = False
 currentSong = None
 speed = 1.0
 paused = False
-current_chord_index = 0 # Added to track current chord
 
 #functions
 def select_song():
+    """ Changes from pages one to two after select song button is clicked. """
+
     root.withdraw()  
     secondpage.deiconify()
+    engine.say(f"Second page, please select a song.")
+    engine.runAndWait()
 
-def go_back_2():
+def go_back_2(): 
+    """ Goes to pages 1 if go back button is clicked on second page. """
+
     secondpage.withdraw()
     root.deiconify()
+    engine.say(f"Welcome page. Select song, or play last song.")
+    engine.runAndWait()
+
 
 def play_music():
+    """ Goes from second page to third page once song is selected. If no song selected, lets user know. """
     global currentSong, playingCurr, speed, current_chord_index 
 
     secondpage.withdraw()
@@ -59,8 +67,13 @@ def play_music():
     selected_song = music_list.curselection()
     if not selected_song:
         print("No song selected!")
+        engine.say(f"No song selected.")
+        engine.runAndWait()
+
         return
     selected_text = [music_list.get(i) for i in selected_song]
+    engine.say(f"Playing page. {selected_text}")
+    engine.runAndWait()
     music_name.config(text=f"{selected_text}")
     currentSong = selected_text[0]
     current_chord_index = 0 # Reset index for a new song
@@ -70,10 +83,16 @@ def play_music():
     file.close()
 
 def go_back_3():
+    """ Goes from playing page to selection page. """
+
     thirdpage.withdraw()
     secondpage.deiconify()
+    engine.say(f"Select song page. Please select a song.")
+    engine.runAndWait()
+
 
 def last_played():
+    """ If last played song button is selected, goes straight to playing page. """
     global currentSong, current_chord_index #added current_chord_index
 
     try:
@@ -87,32 +106,53 @@ def last_played():
             current_chord_index = 0 # Reset index when loading a last played song
             thirdpage.deiconify()
             secondpage.withdraw()
+            engine.say(f"Playing page. {lastSong}")
+            engine.runAndWait()
+
         else:
             print("No song found.")
+            engine.say(f"No song found.")
+            engine.runAndWait()
+
     except FileNotFoundError:
         print("No data available.")
+        engine.say(f"No data available.")
+        engine.runAndWait()
 
 def play_start():
+    """ When play button on playing page is clicked. """
     global paused
     paused = False  # Ensure playback starts
     if currentSong:
         display_chords(music.index(currentSong), speed)
 
 def play_stop():
+    """ When pause button on playing page is clicked. """
     global paused
+
+    engine.say(f"Song is paused.")
+    engine.runAndWait()
     paused = True  # Pause playback
 
 def speed_down():
+    """ When speed down button on playing page is clicked. """
     global speed
-    speed = max(0.5, speed - 0.2)  # Prevent negative speed
+    speed = max(0.5, speed - 0.5)  # Prevent negative speed
     print(f"Speed decreased to {speed}")
+    engine.say(f"Speed decreased to {speed}")
+    engine.runAndWait()
 
 def speed_up():
+    """ When speed down button on playing page is clicked. """
     global speed
-    speed += 0.2
+    speed += 0.5
     print(f"Speed increased to {speed}")
+    engine.say(f"Speed increased to {speed}")
+    engine.runAndWait()
 
 def display_chords(song_number, _speed):
+    """ Function that iterates through the list of chords and outputs audio and text in time with the beats of the song.
+        Takes song number and speed as parameters, returns nothing. """
     global current_chord_index, speed
 
     with open(dataFile, encoding="utf8") as f:
@@ -142,7 +182,7 @@ def display_chords(song_number, _speed):
             continue
 
         chord_pause.append(chords[current_chord_index])
-        chord.config(text=f"{chords[current_chord_index]}") 
+        chord.config(text=f"{chords[current_chord_index]}") # updates each chord on the screen
         thirdpage.update()
 
         engine.say(chords[current_chord_index])
@@ -157,6 +197,7 @@ def display_chords(song_number, _speed):
     if current_chord_index >= len(chords):
         current_chord_index = 0
         chord_pause.clear()
+
 
 #set up command
 root = Tk()
