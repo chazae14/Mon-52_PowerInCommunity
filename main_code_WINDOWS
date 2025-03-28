@@ -1,0 +1,274 @@
+""" ENG 1P13 - Power In Community - Project 3
+
+Program that converts sheet music/guitar chords into audio and display, making it easier for deafblind people to play the guitar. 
+Takes user input through buttons and selection lists, displays chords and allows for pausing, playing, speeding up and speeding down. 
+Outputs audio and text chords.
+
+Mon-52, Chaza Elfizy, Esme Pataracchia, Raadhikka Gupta, Matthew Guo, Nehil Seikh, McMaster University, March 31st 2025. """
+
+import time
+import json
+from tkinter import *
+from tkinter.font import Font
+import pyttsx3
+import pygame
+
+# functionalities
+dataFile = "songs_database.json"
+button_play = True
+button_pause = not button_play
+engine = pyttsx3.init()
+pygame.mixer.init()
+chord_pause = []
+
+#define the music list
+music = []
+
+with open(dataFile, encoding="utf8") as f:
+    json_data = json.load(f)
+for i in range (len(json_data)):
+    song = json_data[i]
+    songName = song["song_name"]
+    songArtist = song["singer"]
+    song_display = f"{songName} - {songArtist}"
+    music.append(song_display)
+
+# global vars
+playingCurr = False
+currentSong = None
+speed = 1.0
+paused = False
+
+#functions
+def select_song():
+    """ Changes from pages one to two after select song button is clicked. """
+
+    root.withdraw()  
+    secondpage.deiconify()
+    #engine.say(f"Second page, please select a song.")
+    #engine.runAndWait()
+
+def go_back_2(): 
+    """ Goes to pages 1 if go back button is clicked on second page. """
+
+    secondpage.withdraw()
+    root.deiconify()
+    #engine.say(f"Welcome page. Select song, or play last song.")
+    #engine.runAndWait()
+
+
+def play_music():
+    """ Goes from second page to third page once song is selected. If no song selected, lets user know. """
+    global currentSong, playingCurr, speed, current_chord_index 
+
+    secondpage.withdraw()
+    thirdpage.deiconify()
+
+    selected_song = music_list.curselection()
+    if not selected_song:
+        print("No song selected!")
+        #engine.say(f"No song selected.")
+        #engine.runAndWait()
+
+        return
+    selected_text = [music_list.get(i) for i in selected_song]
+    #engine.say(f"Playing page. {selected_text}")
+    #engine.runAndWait()
+    music_name.config(text=f"{selected_text}")
+    currentSong = selected_text[0]
+    current_chord_index = 0 # Reset index for a new song
+
+    file = open("lastPlayedSong.txt", "w")
+    file.write(currentSong.strip() + "\n")
+    file.close()
+
+def go_back_3():
+    """ Goes from playing page to selection page. """
+
+    thirdpage.withdraw()
+    secondpage.deiconify()
+    #engine.say(f"Select song page. Please select a song.")
+    #engine.runAndWait()
+
+
+def last_played():
+    """ If last played song button is selected, goes straight to playing page. """
+    global currentSong, current_chord_index #added current_chord_index
+
+    try:
+        file = open("lastPlayedSong.txt", "r")
+        lastSong = file.read().strip()
+        file.close()
+
+        if lastSong: # exists
+            music_name.config(text=lastSong)
+            currentSong = lastSong
+            current_chord_index = 0 # Reset index when loading a last played song
+            thirdpage.deiconify()
+            secondpage.withdraw()
+            #engine.say(f"Playing page. {lastSong}")
+            #engine.runAndWait()
+
+        else:
+            print("No song found.")
+            #engine.say(f"No song found.")
+            #engine.runAndWait()
+
+    except FileNotFoundError:
+        print("No data available.")
+        #engine.say(f"No data available.")
+        #engine.runAndWait()
+
+def play_start():
+    """ When play button on playing page is clicked. """
+    global paused
+    paused = False  # Ensure playback starts
+    if currentSong:
+        display_chords(music.index(currentSong), speed)
+
+def play_stop():
+    """ When pause button on playing page is clicked. """
+    global paused
+
+    #engine.say(f"Song is paused.")
+    #engine.runAndWait()
+    paused = True  # Pause playback
+
+def speed_down():
+    """ When speed down button on playing page is clicked. """
+    global speed
+    speed = max(0.5, speed - 0.5)  # Prevent negative speed
+    print(f"Speed decreased to {speed}")
+    #engine.say(f"Speed decreased to {speed}")
+    #engine.runAndWait()
+
+def speed_up():
+    """ When speed down button on playing page is clicked. """
+    global speed
+    speed += 0.5
+    print(f"Speed increased to {speed}")
+    #engine.say(f"Speed increased to {speed}")
+    #engine.runAndWait()
+
+def display_chords(song_number, _speed):
+    """ Function that iterates through the list of chords and outputs audio and text in time with the beats of the song.
+        Takes song number and speed as parameters, returns nothing. """
+    global current_chord_index, speed
+
+    with open(dataFile, encoding="utf8") as f:
+        json_data = json.load(f)
+
+    # imports data from song song database
+    song = json_data[song_number]
+    songName = song["song_name"]
+    singer = song["singer"]
+    beatPerM = song["bpm"]
+    chords = song["chords"]
+    beats = song["beats"]
+
+    chord = Label(playingframe, text="", font=chord_font, bg="yellow")
+    chord.grid(row=2, column=2, padx=100, sticky=W)     
+
+    # If starting fresh, announce the song
+    if current_chord_index == 0:
+        engine.say(f"Playing {songName}, by {singer}")
+        engine.runAndWait()
+
+    # Continue from where we left off
+    while current_chord_index < len(chords):
+        if paused:  # Just wait while paused
+            thirdpage.update()
+            time.sleep(0.1)
+            continue
+
+        chord_pause.append(chords[current_chord_index])
+        chord.config(text=f"{chords[current_chord_index]}") # updates each chord on the screen
+        thirdpage.update()
+
+        engine.say(chords[current_chord_index])
+        engine.runAndWait()
+
+        time.sleep((beats[current_chord_index] / beatPerM * 60) / speed)
+
+        if not paused:  # Only increment if not paused
+            current_chord_index += 1
+
+    # Reset index when song finishes
+    if current_chord_index >= len(chords):
+        current_chord_index = 0
+        chord_pause.clear()
+
+#set up command
+root = Tk()
+secondpage = Toplevel(root)
+thirdpage = Toplevel(root)
+thirdpage.withdraw()
+secondpage.withdraw()
+
+#set up font
+default_font=Font(family="Times New Roman", size=40)
+title_font=Font(family="Times New Roman", size=60)
+chord_font=Font(family="Times New Roman", size=120)
+emoji_font=Font(family="Times New Roman", size=90)
+
+#set up the frame
+homepage = Frame(root, bg="#000000")
+homepage.pack(fill=BOTH, expand=True)
+selectionframe = Frame(secondpage, bg="#000000")
+selectionframe.pack(fill=BOTH, expand=True)
+playingframe = Frame(thirdpage, bg="#000000")
+playingframe.pack(fill=BOTH, expand=True)
+
+second_frame=LabelFrame(selectionframe)
+second_frame.grid(row=0, column=0, padx=20, pady=20) 
+main_frame=LabelFrame(homepage)
+main_frame.grid(row=1, column=1, padx=20, pady=20) 
+third_frame=LabelFrame(playingframe)
+third_frame.grid(row=0, column=0, padx=20, pady=20) 
+
+#homepage defining
+welcome_label=Label(homepage, text="Welcome to the app!", font=default_font, fg="black", bg="yellow")
+select_button=Button(homepage, text="select song", command=select_song, bg="yellow", width=25, height=3, font=default_font)
+last_played_button=Button(homepage, text="last played song", command=last_played, bg="yellow", width=25, height=3, font=default_font)
+
+#selection frame defining
+music_list_var=StringVar()
+music_list_var.set(music)
+music_list=Listbox(selectionframe, listvariable=music_list_var, selectmode=SINGLE, width=35, height=5, font=default_font)
+instructions_label = Label(selectionframe, text = "Scroll down for more songs!  Please\n select a song and press play to start.", font = default_font, fg="black", bg="yellow")
+
+back_button_2=Button(selectionframe, text="go back", command=go_back_2, bg="yellow", width=15, height=3, font=default_font)
+play_button=Button(selectionframe, text="▶️", command=play_music, bg="yellow", width=5, height=1, font=emoji_font)
+
+#playing frame defining
+music_name=Label(playingframe, text="music name", font=title_font, fg="black", bg="yellow")
+play_music_button=Button(playingframe, text="▶️", command=play_start, bg="yellow", width=5, height=1, font=emoji_font)
+stop_music_button=Button(playingframe, text="⏸️", command=play_stop, bg="yellow", width=5, height=1, font=emoji_font)
+back_button_3=Button(playingframe, text="back", command=go_back_3, bg="yellow", width=15, height=5, font=default_font)
+
+speed_up_button=Button(playingframe, text= "⏫", command=speed_up, bg="yellow", width=5, height=1, font=emoji_font)
+speed_down_button=Button(playingframe, text= "⏬", command=speed_down, bg="yellow", width=5, height=1, font=emoji_font)
+
+#homepage gridding
+welcome_label.grid(row=2, column=1, padx=100, pady=30, sticky=W)
+select_button.grid(row=3, column=1, padx=100, pady=15, sticky=W)
+last_played_button.grid(row=4, column=1, padx=100, pady=15, sticky=W)
+
+#selection frame gridding
+back_button_2.grid(row=3, column=2,padx=100, pady=15, sticky=W)
+play_button.grid(row=3, column=1,padx=100, pady=15, sticky=W)
+music_list.grid(row=2, column=1, columnspan=2, padx=100, pady=30, sticky=W)
+instructions_label.grid(row=1, column=1, columnspan=2, padx=100, pady=30, sticky=W)
+
+#playing frame gridding
+music_name.grid(row=1, column=1, columnspan=3, sticky=W)
+play_music_button.grid(row=2, column=1, padx=50, pady=50, sticky=W)
+stop_music_button.grid(row=3, column=1, padx=50, pady=50, sticky=W)
+back_button_3.grid(row=3, column=2, padx=30, sticky=W)
+speed_up_button.grid(row=2, column=3, padx=30, pady=30, sticky=W)
+speed_down_button.grid(row=3, column=3, padx=30, pady=30, sticky=W)
+
+#set up command
+root.mainloop()
+secondpage.mainloop()
+thirdpage.mainloop()
