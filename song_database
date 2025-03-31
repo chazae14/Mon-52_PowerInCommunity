@@ -60,7 +60,7 @@
     "song_name": "Gold Dust Woman",
     "singer": "Fleetwood Mac",
     "bpm": 62,
-    "chords": [ "D", "G", "C", "G", "D", "G", "C", "G", "D", "G", "C", "G", "D", "D", "G", "C", "G", "D", "D", "G", "C", "G", "D", "D", "G", "C", "G", "D", "Bb", "G", "C", "D", "Bb", "G", "C", "D", "D", "G", "C", "G", "D", "D", "G", "C", "G", "D", "Bb", "G", "C", "D", "Bb", "G", "C", "D", "Bb", "G", "C", "D", "Bb", "G", "C", "D"],
+    "chords": [ "D", "G", "C", "G", "D", "G", "C", "G", "D", "G", "C", "G", "D", "D", "G", "C", "G", "D", "D", "G", "C", "G", "D", "D", "G", "C", "G", "D", "B flat", "G", "C", "D", "B flat", "G", "C", "D", "D", "G", "C", "G", "D", "D", "G", "C", "G", "D", "B flat", "G", "C", "D", "B flat", "G", "C", "D", "B flat", "G", "C", "D", "B flat", "G", "C", "D"],
     "beats": [2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 2, 2, 2, 16, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 17]
   },
 
@@ -76,7 +76,7 @@
     "song_name": "Go Your Own Way",
     "singer": "Fleetwood Mac",
     "bpm": 135,
-    "chords": ["F", "F",  "C", "Bb", "F", "F",  "C", "Bb", "F", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "F",  "C", "Bb", "F", "F",  "C", "Bb", "F", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "F", "C", "Bb", "F", "F", "C", "Bb", "F", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C", "Dm", "Bb", "C"],
+    "chords": ["F", "F",  "C", "B flat", "F", "F",  "C", "B flat", "F", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "F",  "C", "B flat", "F", "F",  "C", "B flat", "F", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "F", "C", "B flat", "F", "F", "C", "B flat", "F", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C", "Dm", "B flat", "C"],
     "beats": [8, 12, 4, 12, 4, 12, 4, 12, 4, 4, 4, 8, 4, 4, 8, 4, 4, 8, 12, 4, 12, 4, 12, 4, 12, 4, 4, 4, 8, 4, 4, 8, 4, 4, 8, 12, 4, 12, 4, 12, 4, 12, 4, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8]
   },
 
@@ -100,7 +100,7 @@
     "song_name": "We are the Champions",
     "singer": "Queen",
     "bpm": 64,
-    "chords": ["Cm", "Gm", "Cm", "Gm", "Cm", "Gm", "Cm", "Gm", "Eb", "Ab", "Eb", "Ab", "Eb", "Bb", "Cm", "F7", "Bb", "Bb7", "C7", "F", "Am", "Dm", "Bb", "C7", "F", "Am", "Bb", "G", "Gm", "C", "Bb", "E", "G", "F", "G", "Ab", "Bb", "Fm", "Gm", "Fm", "Gm", "Fm", "Gm", "Cm", "Gm", "Cm", "Gm", "Cm", "Gm", "Cm", "Gm", "Eb", "Ab", "Eb", "Ab", "Eb", "Bb", "Cm", "F7", "Bb", "Bb7", "C7", "F", "Am", "Dm", "Bb", "C7", "F", "Am", "Bb", "G", "Gm", "C", "Bb", "E", "G", "F", "G", "Ab", "Bb", "F", "F", "Am", "Dm", "Bb", "C7", "F", "Am", "Bb", "G", "Gm7", "C", "Bb", "E", "G", "F", "G", "Ab", "Bb"],
+    "chords": ["Cm", "Gm", "Cm", "Gm", "Cm", "Gm", "Cm", "Gm", "Eb", " A flat", "Eb", " A flat", "Eb", "B flat", "Cm", "F7", "B flat", "B flat7", "C7", "F", "Am", "Dm", "B flat", "C7", "F", "Am", "B flat", "G", "Gm", "C", "B flat", "E", "G", "F", "G", " A flat", "B flat", "Fm", "Gm", "Fm", "Gm", "Fm", "Gm", "Cm", "Gm", "Cm", "Gm", "Cm", "Gm", "Cm", "Gm", "Eb", " A flat", "Eb", " A flat", "Eb", "B flat", "Cm", "F7", "B flat", "B flat7", "C7", "F", "Am", "Dm", "B flat", "C7", "F", "Am", "B flat", "G", "Gm", "C", "B flat", "E", "G", "F", "G", " A flat", "B flat", "F", "F", "Am", "Dm", "B flat", "C7", "F", "Am", "B flat", "G", "Gm7", "C", "B flat", "E", "G", "F", "G", " A flat", "B flat"],
     "beats": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 4, 1, 1, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 4, 1, 1, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 6]
   },
 
@@ -132,7 +132,7 @@
     "song_name": "Yesterday",
     "singer": "The Beatles",
     "bpm": 97,
-    "chords": ["F", "F", "E m", "A7", "Dm", "Bb", "C", "F", "Dm", "G7", "Bb", "F", "F", "E m", "A7", "Dm", "Bb", "C", "F", "Dm", "G7", "Bb", "F", "E m", "A7", "Dm", "Bb", "Gm", "C", "F", "E m", "A7", "Dm", "Bb", "Gm", "C", "F", "F", "E m", "A7", "Dm", "Bb", "C", "F", "Dm", "G7", "Bb", "F", "E m", "A7", "Dm", "Bb", "Gm", "C", "F", "E m", "A7", "Dm", "Bb", "Gm", "C", "F", "F", "E m", "A7", "Dm", "Bb", "C", "F", "Dm", "G7", "Bb", "F", "F", "G", "Bb", "F"],
+    "chords": ["F", "F", "E m", "A7", "Dm", "B flat", "C", "F", "Dm", "G7", "B flat", "F", "F", "E m", "A7", "Dm", "B flat", "C", "F", "Dm", "G7", "B flat", "F", "E m", "A7", "Dm", "B flat", "Gm", "C", "F", "E m", "A7", "Dm", "B flat", "Gm", "C", "F", "F", "E m", "A7", "Dm", "B flat", "C", "F", "Dm", "G7", "B flat", "F", "E m", "A7", "Dm", "B flat", "Gm", "C", "F", "E m", "A7", "Dm", "B flat", "Gm", "C", "F", "F", "E m", "A7", "Dm", "B flat", "C", "F", "Dm", "G7", "B flat", "F", "F", "G", "B flat", "F"],
     "beats": [8, 4, 2, 2, 4, 2, 2, 4, 2, 2, 2, 2, 4, 2, 2, 4, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 4, 4, 2, 2, 4, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 4, 4, 2, 2, 4, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 2]
   },
 
@@ -140,7 +140,7 @@
     "song_name": "Dreams",
     "singer": "The Cranberries",
     "bpm": 65,
-    "chords": ["Eb", "Ab", "Bb", "Eb", "Eb",  "Ab", "Bb", "Eb", "Eb",  "Ab", "Bb", "Eb", "Eb",  "Ab", "Bb", "Eb", "Eb",  "Ab", "Bb", "Eb", "Eb",  "Ab", "Bb", "Eb", "F#", "B", "F#", "B", "Eb",  "Ab", "Bb", "Eb", "Eb",  "Ab", "Bb", "Eb", "Eb",  "Ab", "Bb", "Eb", "Eb",  "Ab", "Bb", "Eb", "Eb", "Ab", "Bb", "Eb", "Eb", "Ab", "Bb", "Eb", "Bb", "Eb", "Eb", "Ab", "Bb", "Eb", "Eb",  "Ab", "Bb", "Eb"],
+    "chords": ["Eb", " A flat", "B flat", "Eb", "Eb",  " A flat", "B flat", "Eb", "Eb",  " A flat", "B flat", "Eb", "Eb",  " A flat", "B flat", "Eb", "Eb",  " A flat", "B flat", "Eb", "Eb",  " A flat", "B flat", "Eb", "F#", "B", "F#", "B", "Eb",  " A flat", "B flat", "Eb", "Eb",  " A flat", "B flat", "Eb", "Eb",  " A flat", "B flat", "Eb", "Eb",  " A flat", "B flat", "Eb", "Eb", " A flat", "B flat", "Eb", "Eb", " A flat", "B flat", "Eb", "B flat", "Eb", "Eb", " A flat", "B flat", "Eb", "Eb",  " A flat", "B flat", "Eb"],
     "beats": [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 , 4, 4, 4, 4 , 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 2, 4, 4, 4, 4, 4, 4, 4, 4]
   },
 
@@ -154,7 +154,7 @@
 
   {
     "song_name": "Slipping Through My Fingers, Capo fret #3",
-    "singer": "ABBA",
+    "singer": " ABBA",
     "bpm": 69,
     "chords": ["G", "Gm", "D", "F#m",  "G", "Gm", "D", "F#m", "G", "Gm", "D", "F#m", "G", "A", "D", "G", "A", "D", "F#", "G", "A", "D", "D", "G", "A", "D", "A", "D", "D", "G", "D", "F#m", "E m", "G", "D", "A", "A", "D", "G", "D", "F#m", "E m", "G", "D", "A", "A", "D", "G", "Gm", "D", "F#m", "G", "Gm", "D", "F#m", "G", "Gm", "D", "F#m", "G", "A", "D", "G", "A", "D", "F#", "G", "A", "D", "D", "G", "A", "D", "A", "D", "D", "G", "D", "F#m", "E m", "G", "D", "A", "A", "D", "G", "D", "F#m", "E m", "G", "D", "A", "A", "D", "G", "A", "D", "F#", "G", "A", "D", "G", "A", "D", "G", "D", "F#m", "E m", "G", "D", "A", "A", "D", "G", "D", "F#m", "E m", "G", "D", "A", "D", "G", "Gm", "D", "F#m", "G", "Gm", "D", "F#m"],
     "beats": [2, 2, 2, 2 ,2, 2, 2, 4, 2, 2, 2, 2 ,2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2 ,2, 2, 2, 4, 2, 2, 2, 2 , 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ,2, 2, 2, 4]
@@ -211,7 +211,7 @@
     "song_name": "Wildest Dreams",
     "singer": "Taylor Swift",
     "bpm": 143,
-    "chords": ["Db", "Eb", "Db", "Eb", "Db", "Fm", "Eb", "Db", "Fm", "Db", "Eb", "Db", "Fm", "Eb", "Db", "Fm", "Db", "Eb", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Db", "Fm", "Eb", "Db", "Fm", "Eb", "Db", "Fm", "Eb", "Db", "Fm", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Eb", "Db", "Eb", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Bbm", "Db", "Ab", "Eb", "Db"],
+    "chords": ["Db", "Eb", "Db", "Eb", "Db", "Fm", "Eb", "Db", "Fm", "Db", "Eb", "Db", "Fm", "Eb", "Db", "Fm", "Db", "Eb", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", "Db", "Fm", "Eb", "Db", "Fm", "Eb", "Db", "Fm", "Eb", "Db", "Fm", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", "Eb", "Db", "Eb", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "B flatm", "Db", " A flat", "Eb", "Db"],
     "beats": [1, 7, 8, 8, 8, 6, 2, 8, 5, 3, 1, 7, 6, 2, 9, 5, 2, 1, 7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 12, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 12, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 21, 3, 5, 9, 8, 12, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
   },
 
@@ -251,7 +251,7 @@
     "song_name": "Talk 2 U",
     "singer": "Brent Faiyaz",
     "bpm": 88,
-    "chords": ["Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Fm", "G7", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Fm", "G7", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Ab", "G7", "Cm7", "G7", "Ab", "G7", "Cm7", "G7", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G"], 
+    "chords": ["Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Fm", "G7", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Fm", "G7", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", " A flat", "G7", "Cm7", "G7", " A flat", "G7", "Cm7", "G7", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G", "Cm7", "Fm", "G"], 
     "beats": [4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 4, 4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 4, 4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 4, 4, 4, 4, 4, 4, 2, 2, 4, 4, 4, 4, 4, 4, 4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 2, 2, 4, 2, 2]
   },
 
@@ -320,7 +320,7 @@
     "song_name": "Bmf",
     "singer": "SZA",
     "bpm": 128,
-    "chords": ["Eb", "Ab6", "Dbdim", "Eb", "Ab6", "Dbdim", "Eb", "Ab6", "Dbdim", "Eb", "Ab6", "Dbdim", "Eb", "Ab6", "Dbdim", "Eb", "Ab6", "Dbdim", "Eb", "Ab6", "Dbdim", "Eb", "Ab6", "Dbdim", "Eb", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim", "Eb/G", "Ab6", "Dbdim"], 
+    "chords": ["Eb", " A flat6", "Dbdim", "Eb", " A flat6", "Dbdim", "Eb", " A flat6", "Dbdim", "Eb", " A flat6", "Dbdim", "Eb", " A flat6", "Dbdim", "Eb", " A flat6", "Dbdim", "Eb", " A flat6", "Dbdim", "Eb", " A flat6", "Dbdim", "Eb", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim", "Eb/G", " A flat6", "Dbdim"], 
     "beats": [8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4, 8, 4, 4]
   },
   {
