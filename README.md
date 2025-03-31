@@ -7,7 +7,7 @@ as well as large fonts and buttons to accommodate for any partial blindness, and
 simple and intuitive. 
 
 **LIBRARIES USED**
-- Python tkinter was used for the interface.
+- Python GUI was used for the interface.
 - Pygame was used for the button interactions. 
 - Json was used for file parsing and data management. 
 - Pyttx3 was used for text-to-speech. 
