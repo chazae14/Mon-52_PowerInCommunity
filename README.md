@@ -10,4 +10,6 @@ simple and intuitive.
 - Python GUI was used for the interface.
 - Pygame was used for the button interactions. 
 - Json was used for file parsing and data management. 
-- Pyttx3 was used for text-to-speech. 
+- Pyttx3 was used for text-to-speech.
+
+Includes a version that is compatible with Mac OS (main_code), and a version that is more compatible with Windows OS (main_code_WINDOWS)
